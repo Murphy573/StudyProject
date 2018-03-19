@@ -1,0 +1,25 @@
+<div class="col-sm-12 col-md-12 col-lg-12" ng-controller="filterCtrl">
+    <pre>
+        过滤器：接收数据，通过指定的规则处理，将结果返回，用来做数据格式化
+        内置过滤器：currency(货币)、date(日期)、filter(数组子集匹配)、json、limitTo(限制个数:截取数组或字符串)、lowercase、uppercase、number、orderBy
+        页面使用：<code>"xx | date | json | number"</code>，可以多个一起用,传参<code>xx | filterName:param1:param2…</code>
+        controller使用：controller中注入$filter服务，<code>var param = $filter('filterName')(data);</code>,传参<code>$filter(‘filterName’)(data,param1,param2…);</code>
+    </pre>
+
+    <div class="col-sm-12">
+
+        <p>currency默认：{{100 | currency}}，人民币：{{100 | currency: "￥"}}</p>
+        <p>date默认：{{1498096698896 | date}}, 具体：{{1498096698896 | date: "yyyy-MM-dd HH : mm : ss EEE"}}</p>
+        <p>filter: 参数为数字或字符串，{{filterData | filter: '2'}}, 参数为对象: {{ filterData | filter : {name : 'i'} }},
+            参数为function：{{filterData | filter : func }}</p>
+        <p>json: {{filterData | json}}</p>
+        <p>limitTo: {{filterData | limitTo: 1}}, {{"abcdefg" | limitTo: -2}}</p>
+        <p>uppercase&lowercase: {{"test" | uppercase}}, {{"TEsT" | lowercase}}</p>
+        <p>number:{{ 12346 | number : 2 }}</p>
+        <p>orderBy: {{filterData | orderBy: 'age'}},参数也可以接函数，还可以是数组：表示一次按照数组中的属性值排序</p>
+        <p>自定义过滤器: {{2 | myFilter: 2 : 3}}</p>
+    </div>
+    <div class="col-sm-12">
+        <button class="btn btn-default" ng-click="alertFilter()">在controller中调用filter</button>
+    </div>
+</div>

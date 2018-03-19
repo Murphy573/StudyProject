@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AngularTest</title>
+    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../javascripts/bootstrap-select/dist/css/bootstrap-select.min.css">
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        <span>{{hello}}</span>
+        <span>selectList = {{selectList}}</span>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="maxOption2" class="col-lg-2 control-label">multiple, show-menu-arrow, maxOptions=2</label>
+
+                <div class="col-lg-10">
+                    <select id="maxOption2" title="请从列表中选择" class="selectpicker form-control dropup" multiple >
+                        <option ng-repeat="selec in selectList" value="{{selec.value}}" ng-selected="isInSelects.indexOf(selec.name) > -1">{{selec.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+
+        <div class="form-group">
+            <select multiple class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="flag">全选
+                <input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+            </label>
+            <ul>
+                <li ng-repeat="i in list">
+                    <input type="checkbox" ng-model="i.checked" ng-change="selectOne()">
+                    <span>{{id}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</body>
+<script src="../javascripts/jquery/jquery-1.10.2.js"></script>
+<script src="../javascripts/angular/angular.js"></script>
+<script src="../javascripts/angular/angular-route.js"></script>
+<script src="app/myApp.js"></script>
+<script src="controllers/publishCtrl.js"></script>
+<script src="controllers/forumCtrl.js"></script>
+<script src="../javascripts/bootstrap/bootstrap.js"></script>
+<script src="../javascripts/bootstrap-select/js/bootstrap-select.js"></script>
+</html>

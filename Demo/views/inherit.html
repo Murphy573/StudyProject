@@ -1,0 +1,76 @@
+<div class="col-sm-12 col-md-12 col-lg-12" ng-controller="inheritCtrl">
+    <pre>
+        常用内置指令：
+            ng-model  $scope <-> view的双向绑定
+            ng-disabled:禁用状态
+            ng-class ：
+                1> controller中定义class名称，html中：<code>class="{{class.name1}}"</code>   不推荐
+                2> <code>ng-class="{true: 'classA', false: 'classB'}[true/false]"</code>  互斥关系
+                3> <code>ng-class="{'classA': true/false, 'classB': true/false....}"</code>  可以添加多个class
+            ng-if ng-show ng-hide：都可以用来控制dom元素的显示或隐藏，区别：
+                1> ng-show和ng-hide根据所给表达式的值来显示或隐藏HTML元素(display)
+                2> ng-if根据表达式的值在DOM中生成或移除一个元素，会从父作用域继承作用域并新建自己的作用域
+            ng-repeat:
+                1>遍历数组<code>ng-repeat="item in array"</code>
+                2>遍历对象<code>ng-repeat="(key,value) in obj"</code>
+                3>使用过滤器<code>ng-repeat="item in items |filter"</code>
+                4>track by flag: 依据flag去遍历，如果item有值重复，angularJs会报错，原因是angular需要一个唯一值可以与生成的dom绑定；
+                    也可以做dom节点缓存：（ng-repeat当数据有变化时是先删除再生成，如果我们使用不变的东西例如id，那么当数组发生变化时存在的dom只会更新，不存在的重新生成，提升效率）
+            ng-src ng-href 要加{{}}--资源url是个（包含）变量，规避第一次请求404的问题
+            ng-change，ng-click… ： 事件类(不多介绍)
+    </pre>
+    <pre>
+        工具函数：
+        <code>Angular.(bind, isArray, isNumber,isDefined, isString, isObject, equals, copy, extend,forEach,fromJson, toJson, identity,isDate, isUndefined,lowercase, uppercase,noop)</code>
+    </pre>
+    <form class="form-horizontal" role="form" name="temForm" novalidate>
+        <div class="form-group" ng-class="{true: 'classA', false: 'classB'}[class.value1 == class.value2]">
+            第二种写法：ng-class
+        </div>
+        <div class="form-group" ng-class="{'classA': class.value1 == 1, 'classB': class.value2 == 1}">
+            第三种写法：ng-class
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="class.click()">改变class</button>
+            <button class="btn btn-info" ng-disabled="2 == 2">disabled</button>
+            <button class="btn btn-danger" ng-click="ngIfShowHide.btnClick()">ng-if+{{inputValue}}</button>
+        </div>
+        *****************ng-if会新建作用域*****************
+        <div class="form-group">
+            <!--父层:<input ng-model="inputValue" class="form-control" type="text" />-->
+            对象：<input ng-model="ngIfShowHide.inputValue" class="form-control" type="text" />
+            {{inputValue}}
+        </div>
+        <div class="form-group" ng-if="isIf">
+            <!--ng-if:<input ng-model="inputValue" class="form-control" type="text" />-->
+            对象：<input ng-model="ngIfShowHide.inputValue" class="form-control" type="text" />
+        </div>
+
+        <div class="form-group">
+            <span class="col-sm-1 control-label">名称:  </span>
+            <div class="col-sm-3">
+                <input autocomplete="off" name="tmpName" ng-model="tmp.name"
+                       class="form-control"
+                       type="text" placeholder="name" required maxlength=5 />
+            </div>
+            <div class="col-sm-3">所输的是: {{tmp.name}}</div>
+            <div class="col-sm-2 error">
+                <span ng-show="temForm.tmpName.$dirty && temForm.tmpName.$invalid">错误提示</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-sm-1 control-label">ID:  </span>
+            <div class="col-sm-3">
+                <input name="tmpID"  ng-model="tmp.id"
+                       required="required"   class="form-control"
+                       type="text" placeholder="id" ng-pattern="/^[0-9]*$/"  maxlength=5/>
+            </div>
+            <div class="col-sm-2 error">
+                <span ng-show="temForm.tmpID.$dirty && temForm.tmpID.$invalid">错误提示</span>
+                <span ng-show="temForm.tmpID.$dirty && temForm.tmpID.$error.maxlength">长度不大于5</span>
+                <span ng-show="temForm.tmpID.$dirty && temForm.tmpID.$error.pattern">匹配数字</span>
+                <span ng-show="temForm.tmpID.$dirty && temForm.tmpID.$error.required">必须输入</span>
+            </div>
+        </div>
+    </form>
+</div>

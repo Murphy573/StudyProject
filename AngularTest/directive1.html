@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AngularTest</title>
+    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../javascripts/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../stylesheets/jquery.minicolors.css">
+    <link rel="stylesheet" href="../javascripts/jquery/JqueryPagination/jquery.pagination.css">
+
+    <script type='text/ng-template' id='tempUrl.html'>
+        <div><h1>我是templateUrl</h1></div>
+    </script>
+
+
+</head>
+<body ng-app="myApp">
+<div ng-controller="myController">
+    <replace-ele></replace-ele>
+    ******************************************
+    <hello>
+        <br/>
+        <span>原始的内容，</span><br/>
+        <span>还会在这里。</span>
+    </hello>
+    <hello>
+    </hello>
+
+    *********************************************
+    <div class="func-temp"></div>
+    *********************************************
+    <div temp-url></div>
+
+    *****************directive属性：scope设置作用域*********************
+    scope:true
+    <div>parent: <input type="text" ng-model="name"/></div>
+    <div child-scope>
+
+    </div>
+    <br>
+    scope: {@}
+    <div>@parent: <input type="text" ng-model="aite"/></div>
+    <div scope_aite aite1="{{aite}}"></div>
+    <br>
+    scope: {=}
+
+    <div>@parent: <input type="text" ng-model="equalV"/></div>
+    <div scope-equal equal="equalV"></div><!--属性值等于父的ng-model绑定的值-->
+
+    ***********************封装minicolors*****************
+    <div class="col-sm-1">
+        <input mini-colors class="form-control colorPicker" color="colorValue" ng-model="colorValue"
+        value="{{colorValue}}" type="hidden"/>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    ***********************封装分页*****************
+    {{pageParams.currentPage}}
+    <div ng-pagination pageparams="pageParams" class="m-pagination"></div>
+    <br>
+    <button class="btn btn-success btn-sm" ng-click="changeTotal()">改变总数+100</button>
+    <button class="btn btn-danger btn-sm" ng-click="changeCurPage()">改变当前页为第二页</button>
+    <div ng-pagination pageparams="pageParams1" class="m-pagination"></div>
+
+    **********************
+    <div my-directive>
+        <div ng-transclude>12321321321321</div>
+        <div>222222222222222222222</div>
+        <div>3333333333333333</div>
+        <div>444444444444444444</div>
+    </div>
+</div>
+</body>
+<script src="../javascripts/jquery/jquery-1.10.2.js"></script>
+<script src="../javascripts/angular/angular.js"></script>
+<script src="../javascripts/angular/angular-route.js"></script>
+<script src="directives/directive1.js"></script>
+<script src="controllers/publishCtrl.js"></script>
+<script src="controllers/forumCtrl.js"></script>
+<script src="../javascripts/bootstrap/bootstrap.js"></script>
+<script src="../javascripts/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="../javascripts/jquery/jquery.minicolors.js"></script>
+<script src="../javascripts/jquery/JqueryPagination/jquery.pagination-1.2.7.js"></script>
+</html>

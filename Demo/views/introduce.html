@@ -1,0 +1,22 @@
+<div class="col-sm-12 col-md-12 col-lg-12">
+        <pre>AngularJS主要用于构建单页面Web应用，通过原生的Model-View-Controller（MVC，模型-视图-控制器）功能增强了HTML：
+                M: 数据模型---<code>$scope.tmp = {a: 1}</code>
+                V: 视图---通常指的是html页面
+                c: 控制器---<code>angular.module("module", []).controller</code>
+        </pre>
+        <code>ng-app</code>用来表示在当前文档节点下面的所有节点都将交给angular管理（作用范围）,<strong>可以有多个，但是必须是平行关系，不能嵌套</strong>
+        <br/>
+        <p>
+                1、angular的启动是默认检测dom元素是否ng-app属性，如果有ng-app属性，则立即执行angular.bootstrap()函数自行启动应用，不会去检测下一个ng-app(后面的APP需要手动去加载)。
+                <br/>
+                2、我们可以通过<code>angular.bootstrap(element, [modules], [config])</code>函数来手动启动应用：controller、service、filter、directive等等必须在启动开始前定义好
+                <br/>
+                        element: 要启动angular的根节点，一般为document，也可以是其他的的html的dom。
+                <br/>
+                        modules: 数组(可选),依赖的模块
+                <br/>
+                        config:  object(可选),配置项,目前只有strictDi一个可配置项，默认为false,是否开启辅助debug
+                <br/>
+                <strong>angular.bootstrap必须是在element参数所指向的dom树加载完毕后才能调用，所以通常我们会在$(document).ready()后执行</strong>
+        </p>
+</div>

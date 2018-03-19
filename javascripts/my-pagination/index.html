@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>index</title>
+  <link href="src/ng-pagination.css" rel="stylesheet" />
+  <style type="text/css">
+  body {
+    padding: 20px 0 0 20px;
+  }
+  
+  .pager {
+    margin: 20px;
+  }
+  </style>
+</head>
+
+<body ng-app="app">
+<div ng-controller="demoCtrl">
+  <div class="pager">
+    <pager page-params="pageParams" page-size-items = "[10, 15, 20, 25]" on-page-change="query()" show-goto="true" ></pager>
+  </div>
+  <button ng-click="addSum()">总数+50</button><button ng-click="changeCurPage()">改变页码为2</button>{{currentPage}}
+</div>
+<script src="../angular/angular.js"></script>
+  <script src="src/ng-pagination.js"></script>
+  <script type="text/javascript">
+  var app = angular.module('app', ['ng-pagination']);
+  app.controller('demoCtrl', function($scope) {
+    $scope.query = function() {
+      console.log($scope.pageParams.currentPage);
+        $http.get("page/getPages?currentPage=" + $scope.curResPage + "&pageSize=" + pageSize+"&groupID=" + $scope.currentGroupId+"&showUngroupedResource="+$scope.selectResource+"&visualTypeID="+$scope.selectType+"&searchVisualName="+$scope.queryName)
+            .success(function (response) {
+                $scope.pageList = response;
+                $scope.totalResPages = Boolean(parseInt(response.totalCount) % pageSize) ? parseInt(((parseInt(response.totalCount) / pageSize) + 1)) : parseInt(parseInt(response.totalCount) / pageSize);
+                if($scope.pageList){
+                    $http.get("pageGroup/getAll")
+                        .success(function (response) {
+                            $scope.visualGroupList = response;
+
+                        });
+                }
+            });
+    };
+
+	$scope.currentPage = 1;
+	$scope.total = 50;
+	$scope.pageParams = {
+		currentPage : 1,
+		total: 50,
+		pageSize: 0
+	}
+	$scope.addSum = function(){
+		$scope.pageParams.total += 50;
+	}
+	$scope.changeCurPage = function(){
+		$scope.pageParams.currentPage = 2;
+	}
+  });
+  </script>
+</body>
+
+</html>

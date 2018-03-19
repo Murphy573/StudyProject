@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Position & Float</title>
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+<div class="">
+    <div class="p-absolute p-div bg-color-yellow"></div>
+    <div class="p-relative p-div bg-color-green"></div>
+    <div class="p-div bg-color-red"></div>
+</div>
+<br>
+<div>
+    <span class="ui-checkbox"><input type="checkbox"><span class="inner"></span></span>
+    <span class="ui-checkbox"><input type="checkbox"><span class="inner"></span></span>
+    <span class="ui-checkbox"><input type="checkbox"><span class="inner"></span></span>
+</div>
+<div class="ui-rem">
+
+</div>
+<div style="border-radius:5px; background:#1d1d1d; box-shadow:0px 1px 5px #000000 inset; width:200px; height:200px; border-bottom:1px solid #666666; border-left:1px solid #2b2b2b; border-right:1px solid #2b2b2b;"></div>
+<script>
+    (function(win) {
+        var doc = win.document.documentElement;
+        var ratio = 1920 / 100;
+        var tid;
+
+        function refreshRem() {
+            var width = window.innerWidth;
+            if (width < 700) { // 最小宽度
+                width = 700;
+            }
+            var rem = width / ratio;
+            doc.style.fontSize = rem + 'px';
+        }
+
+        win.addEventListener('resize', function() {
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+        }, false);
+        win.addEventListener('pageshow', function(e) {
+            if (e.persisted) {
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem, 300);
+            }
+        }, false);
+
+        refreshRem();
+
+    })(window);
+</script>
+</body>
+</html>

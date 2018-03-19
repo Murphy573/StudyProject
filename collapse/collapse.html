@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>折叠</title>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap.min-3.3.7.css"/>
+</head>
+<body>
+    <div class="col-sm-12">
+        <table id="parent" class="table table-striped">
+            <thead>
+                <tr>
+                    <th width="19px">ID</th>
+                    <th width="178px">名称</th>
+                    <th width="178px">描述</th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12">
+        <div style="width: 100%;">
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 2%;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                <span class="sr-only">45% Complete</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- HTML to write -->
+    <div class="col-sm-12">
+        <a id="tooltip" class="btn btn-sm btn-info" data-toggle="tooltip">  tooltip</a>
+        <a id="popover" role="button" tabindex="0">弹出框</a>
+    </div>
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+        Loading state
+    </button>
+
+    <script>
+
+    </script>
+</body>
+<script type="text/javascript" src="lib/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="lib/bootstrap-3.3.7.js"></script>
+<script type="text/javascript" src="collapse.js"></script>
+<script>
+    $(function(){
+        $("#tooltip").tooltip({
+            html: true,
+            title: '<div style="width: 100px;height:10px;"></div><div class="progress">'+
+                    '<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">'+
+                    '60% Complete'+
+                    '</div></div></div>'
+        });
+
+        $("#popover").popover({
+            html: true,
+            trigger: "focus",
+            delay: { "show": 200, "hide": 100 },
+            content: function(){
+                //$(this)
+                return '<div style="width: 100px;height:10px;"></div><div class="progress">'+
+                    '<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">'+
+                    '60% Complete'+
+                    '</div></div></div>'
+            },
+
+        })
+
+        $('#myButton').on('click', function () {
+            var $btn = $(this).button('loading')
+            // business logic...
+            $btn.button('reset')
+        })
+    })
+</script>
+</html>

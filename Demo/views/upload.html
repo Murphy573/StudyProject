@@ -1,0 +1,13 @@
+<div class="col-sm-12 col-md-12 col-lg-12" ng-controller="uploadCtrl">
+
+    <div class="col-sm-12">
+        <div class="col-sm-12">
+            <my-file-upload on-file-change="onFileChange();" file-model="fileModel" accept="text/html"></my-file-upload>
+        </div>
+
+        <div class="col-sm-12">
+            <my-file-upload has-input=true on-file-change="onFileChange();" file-model="fileModel" accept="text/html"></my-file-upload>
+        </div>
+    </div>
+    <input type="{{flag ? 'password' : 'text'}}"><button ng-mousedown="flag = false" ng-mouseup="flag = true">点击</button>
+</div>

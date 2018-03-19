@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+
+    <style>
+        .error{
+            color: red;
+        }
+        input.ng-invalid{
+            border: 1px solid red !important;
+        }
+        input.ng-valid{
+            border: 1px solid green !important;
+        }
+
+        pre code{
+            color: #c72541 !important;
+        }
+        .classA{
+            background-color: #62c462;
+        }
+        .classB{
+            color: #0e90d2;
+        }
+
+        .box {
+            position: absolute;
+            left: 200px;
+            top: 100px;
+            border: 1px solid #0e90d2;
+            background-color: silver;
+            max-width: 300px;
+            max-height: 300px;
+            display: flex;
+            flex-flow: column wrap;
+        }
+
+        .box > div {
+            margin-top: 3px;
+            margin-left: 3px;
+            width: 120px;
+            height: 80px;
+            background-color: red;
+        }
+
+
+    </style>
+
+    <style>
+        .my-file-upload{
+            position: relative;
+            display: inline-block;
+            height: 34px;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+        .my-file-upload > input[type=file]{
+            display: none;
+        }
+        .my-file-upload > input[type=text] {
+            box-sizing: border-box;
+            border-radius:2px;
+            border: solid 1px #ddd;
+            width: 200px;
+            height:30px;
+            line-height: 30px;
+            text-indent:3px;
+        }
+        .my-file-upload > span.file {
+            color:#888;
+            font-size:12px !important;
+            white-space:nowrap;
+            overflow:hidden;
+        }
+
+        .my-file-upload > span.file-hidden{
+            white-space:nowrap;
+
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <br/>
+    <div ui-view="index"></div>
+</body>
+<script type="text/javascript" src="common/lib/require/require.js" data-main="common/main"></script>
+</html>

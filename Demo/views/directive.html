@@ -1,0 +1,67 @@
+<div class="col-sm-12 col-md-12 col-lg-12" ng-controller="directiveCtrl">
+    <pre>
+        指令：允许定义公共的html元素或属性，实现自定义组件
+            <code>
+            app.directive("myDirective", function(){
+                return {
+                    restrict: "ECMA",
+                    priority: 100,//指令级别，数字越大越先执行
+                    terminal: false,//如果为true,表示低于此指令的优先级均不会执行
+                    template: "<span style='color:red;'>*</span>",
+                    /*template: function(elm, attr){//当前dom，当前dom属性
+                        return "<span style='color:red;'>*</span>";
+                    }*/
+                    templateUrl: "",//模板路径或者返回路径的函数---需要缓存模板
+                    replace: false,//默认false;如果为true,将替换目标元素
+                    scope: false,//继承父作用域;如果为true表示继承父作用域并创建自己的作用域
+                    /*scope: {//全新的隔离作用域（不继承父作用域）
+                        "aite": "@",//继承父作用域的某个属性：父变化子变化，子变化父不变化
+                        "equal": "=",//某个属性继承父作用域并创建双向绑定：子父变化都影响
+                        "and": "&"//执行父作用域的function
+                    }*/,
+                    require: "",//字符串或者数组：作为Link函数的第四个参数
+                    link: function(scope, elm, attr, ctrl){//指令与dom链接的函数
+                    }
+                }
+            });
+            </code>
+    </pre>
+    <div class="col-sm-12">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <span class="control-label col-sm-1">scope: true</span>
+                <div class="col-sm-2">parent: <input type="text" ng-model="data1" class="form-control"/></div>
+                <div scope-true class="col-sm-2"></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label col-sm-1">scope: false</span>
+                <div class="col-sm-2">parent: <input type="text" ng-model="data1" class="form-control"/></div>
+                <div scope-false class="col-sm-2"></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label col-sm-1">scope: @</span>
+                <div class="col-sm-2">parent: <input type="text" ng-model="directiveData.data1" class="form-control"/></div>
+                <div scope-aite aite-attr="{{directiveData.data1}}" class="col-sm-2"></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label col-sm-1">scope: =</span>
+                <div class="col-sm-2">parent: <input type="text" ng-model="directiveData.data2" class="form-control"/></div>
+                <div scope-equal equal-attr="directiveData.data2" class="col-sm-2"></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label col-sm-1">scope: &</span>
+                <div scope-and and-attr="directiveData.func()" class="col-sm-2"></div>
+            </div>
+            <div class="form-group">
+                <div col-sm-1>封装colorPicker</div>
+                <div class="col-sm-2">
+                    <input mini-colors class="form-control colorPicker" color="colorValue" ng-model="colorValue"
+                           value="{{colorValue}}" type="hidden"/>
+                </div>
+            </div>
+            <my-directive></my-directive>
+
+        </form>
+        </div>
+    </div>
+</div>

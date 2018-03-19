@@ -1,0 +1,24 @@
+<div class="col-sm-12 col-md-12 col-lg-12" ng-controller="serviceCtrl">
+    <pre>
+        服务：作为单例对象在需要到的时候被创建，只有在应用生命周期结束的时候（关闭浏览器）才会被清除,而controllers在不需要的时候就会被销毁了（因为service的底层机制是通过闭包实现）
+            可以用来持久化公共数据已供不同controller调用；可以将公共方法进行封装；
+            factory: 仅仅需要的是一个方法和数据的集合考虑使用
+            service: 通过构造函数的方式创造的，且持有创造对象本身，调用了这个service()的对象就会被赋值（方法或者数据）
+            provider: 创建service最底层的方式，唯一一个可以在config()中进行配置的service;其他服务注入($http)在$get函数处注入
+    </pre>
+    <pre>
+        事件系统：
+            $broadcast: 触发的事件向下传播(所有子controller)
+            $emit: 把事件向上传递
+            $on: 进行事件监听
+    </pre>
+    <div class="col-sm-12" ng-controller="child1">
+        <button class="btn btn-danger" ng-click="emit()">传播事件</button>
+    </div>
+    <div class="col-sm-12" ng-controller="child2">
+
+    </div>
+    <div class="col-sm-12">
+        <button class="btn btn-default" ng-click="setData()">设置dataFactory值</button>
+    </div>
+</div>

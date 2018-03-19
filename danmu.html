@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .notice-board {
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            background: #7cb5ec;
+            width: 800px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .danmu {
+            position: absolute;
+            left: 98%;
+            white-space: nowrap;
+            background: #ff6600;
+
+        }
+
+    </style>
+
+    <script src="./notice.js"></script>
+</head>
+<body>
+
+    <div class="notice-board">
+        <div class="danmu">transition</div>
+    </div>
+
+
+<button id="start">开始</button>
+<button id="stop">暂停</button>
+
+<script>
+    let Notice = new window.Notice({
+        notices: ['前方高能！！！', '共有15000条弹幕来袭！', '第一！！', '7879789'],
+        container: document.querySelector('.notice-board'),
+        speed: 20
+    });
+    document.querySelector('#start').addEventListener('click', function () {
+        Notice.start();
+    })
+    document.querySelector('#stop').addEventListener('click', function () {
+        Notice.stop();
+    })
+
+
+    var _dom = document.querySelector('.notice-board > .danmu');
+    setTimeout(function(){
+        _dom.style.cssText = ' ' +
+        'transition: transform 8s linear 0s;transform: translateX(-500px);';
+    }, 0);
+
+
+    setTimeout(() => {
+        let _rect = _dom.getBoundingClientRect();
+        _dom.style.transition = null;
+        _dom.style.transform = `translateX(${-(800 - _rect.left)}px)`;
+        console.log( _dom.style.transform);
+
+    }, 4000)
+</script>
+</body>
+</html>

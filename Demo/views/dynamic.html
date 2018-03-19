@@ -1,0 +1,14 @@
+<div class="col-sm-12 col-md-12 col-lg-12" ng-controller="dynamicCtrl">
+    <button class="btn btn-danger" ng-click="clickBtn();">动态创建controller</button>
+
+    <div id="nav-container" class="col-sm-12">
+        <ul class="nav nav-tabs">
+            <li id="default" role="presentation" class="active"><a>Default</a></li>
+        </ul>
+    </div>
+    <div id="content-container">
+        <div id="default" class="col-sm-12" ng-controller="defaultCtrl">
+            {{refreshData}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="col-lg-12" ng-controller="listCtrl">
+    <div class="panel panel-default">
+        <div class="panel-body" collapse="isListCollapsed">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th width="6%">序号</th>
+                        <th width="29%">名字</th>
+                        <th width="30%">年龄</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in list">
+                    <td>{{$index + 1}}</td>
+                    <td><a ng-click="tabParams.switchTab('detail', 'manager.detail', 'detailUserInfo', user)">{{user.name}}</a></td>
+                    <td>{{user.age}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

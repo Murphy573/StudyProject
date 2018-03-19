@@ -1,0 +1,10 @@
+<div style="padding-top: 100px;" class="row" ng-controller="managerCtrl">
+    <div class="header navbar">
+        <ul class="nav nav-pills nav-justified">
+            <li ng-click="tabParams.switchTab('list', 'manager.list')" ng-class="{active: tabParams.currentTab == 'list'}"><a>list</a></li>
+            <li ng-click="tabParams.switchTab('detail', 'manager.detail')" ng-class="{active: tabParams.currentTab == 'detail'}"><a>detail</a></li>
+            <li ng-click="tabParams.switchTab('footer')" ng-class="{active: tabParams.currentTab == 'footer'}"><a href="">footer</a></li>
+        </ul>
+    </div>
+    <div ui-view="manager" style="padding-top:100px" class="tab-content"></div>
+</div>

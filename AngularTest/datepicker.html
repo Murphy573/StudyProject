@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>date</title>
+    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="../javascripts/bootstrap/bootstrap3-datepicker/bootstrap-datetimepicker.css">
+</head>
+<body ng-app="myApp">
+<div class="row" ng-controller="datePickerController">
+    <div class='col-sm-3'>
+        <div class="form-group">
+            <div style="width:248px;" class='input-group date'  ng-datetime-picker="dateTIME.time">
+                <input type='text' class="form-control" readonly/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" multiple>
+            Dropdown
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+
+<script src="../javascripts/jquery/jquery-1.10.2.js"></script>
+<script src="../javascripts/bootstrap/bootstrap.min.js"></script>
+<script src="../javascripts/angular/angular.js"></script>
+<script src="controllers/datepickerController.js"></script>
+<script src="../javascripts/bootstrap/bootstrap3-datepicker/moment-with-locales.js"></script>
+<script src="../javascripts/bootstrap/bootstrap3-datepicker/bootstrap-datetimepicker.js"></script>
+<script>
+    $(function () {
+        /*var picker2 = $('#datetimepicker2').datetimepicker({
+            format: "YYYY/MM/DD HH:mm:ss",
+            locale: "zh-CN",
+            //useCurrent: true,//默认设置为当前时间
+            //collapse: true,//日期面板和小时分钟秒时间面板是否折叠
+            //viewMode: 'days',
+            icons: {
+                today: 'glyphicon glyphicon-screenshot',
+            },
+            //useStrict: true,
+            //sideBySide: true,
+            showTodayButton: true,
+            showClear: true,
+            showClose: true,
+            tooltips: {
+                today: '今天',
+                clear: '清楚',
+                close: '关闭',
+                selectMonth: 'Select Month',
+                prevMonth: 'Previous Month',
+                nextMonth: 'Next Month',
+                selectYear: 'Select Year',
+                prevYear: 'Previous Year',
+                nextYear: 'Next Year',
+                selectDecade: 'Select Decade',
+                prevDecade: 'Previous Decade',
+                nextDecade: 'Next Decade',
+                prevCentury: 'Previous Century',
+                nextCentury: 'Next Century'
+            }
+        });*/
+    });
+</script>
+</html>

@@ -1,0 +1,46 @@
+<div class="col-sm-12 col-md-12 col-lg-12" ng-controller="httpCtrl">
+    <pre>
+        $http: 与服务器交互的服务
+        快捷使用方式：$http.get，$http.post.....等等
+            <code>$http.get(url, config),$http.post(url, data, config)</code>
+        单独配置：<code>
+                    $http({
+                        method:"POST",
+                        url:"url",
+                        headers:{
+                            "Content-Type": ""
+                        },
+                        data:{ },
+                        success: function(){},
+                        error: function(){}
+                    })</code>
+        常用配置参数：
+            method：字符串，请求方法
+            url：字符串，请求地址
+            params：字符串或者对象，get请求参数
+            data：字符串或者对象，作为请求信息数据的数据
+            headers：对象，字符串或者函数返回表示发送到服务器的HTTP请求头
+            responseType：字符串，响应头类型
+            timeout：数值，毫秒，超时则让请求中止
+        经验：传递FormData数据(file类)需要注意设置
+                <code>
+                transformRequest: angular.identity,
+                headers: {
+                     'Content-Type': undefined
+                }
+                </code>
+
+        promise: 异步处理模式，一种对执行结果不确定的一种预先定义--如果成功，就怎么样，如果失败，就怎么样
+        $q: AngularJS中自己封装实现的一种Promise实现
+            defer() 创建一个deferred对象(将 Promise 实例与 标记任务状态(执行成功还是不成功)的 API 相关联)，这个对象可以执行几个常用的方法，比如resolve,reject,notify等
+            all() 传入Promise的数组，批量执行，返回一个promise对象: 如果都成功，则包含所有结果的数组；如果有一个失败则指返回失败的那一个promise
+            when() 传入一个不确定的参数，如果符合Promise标准，就返回一个promise对象
+    </pre>
+    <div class="col-sm-12">
+        <button class="btn btn-default" ng-click="promiseFunc(1)">执行promise+resolve</button>
+        <button class="btn btn-default" ng-click="promiseFunc('1')">执行promise+reject</button>
+        <button class="btn btn-default" ng-click="promiseFunc(true)">执行promise+notify</button>
+        <button class="btn btn-default" ng-click="allFunc()">执行$q.all</button>
+        <button class="btn btn-default" ng-click="whenFunc()">执行$q.when</button>
+    </div>
+</div>

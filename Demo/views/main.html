@@ -1,0 +1,16 @@
+<div class="col-sm-12 col-md-12 col-lg-12" ng-controller="mainController">
+        <ul class="nav nav-pills">
+                <li role="presentation" ng-click="nav.clickNav('introduce')" ng-class="{'active': nav.select == 'introduce'}"><a ui-sref="index.introduce">简单介绍</a></li>
+                <li role="presentation" ng-click="nav.clickNav('inherit')" ng-class="{'active': nav.select == 'inherit'}"><a ui-sref="index.inherit">内置指令与工具函数</a></li>
+                <li role="presentation" ng-click="nav.clickNav('dataBind')" ng-class="{'active': nav.select == 'dataBind'}"><a ui-sref="index.dataBind">数据绑定与表单验证</a></li>
+                <li role="presentation" ng-click="nav.clickNav('service')" ng-class="{'active': nav.select == 'service'}"><a ui-sref="index.service">服务与通信</a></li>
+                <li role="presentation" ng-click="nav.clickNav('filter')" ng-class="{'active': nav.select == 'filter'}"><a ui-sref="index.filter">过滤器</a></li>
+                <li role="presentation" ng-click="nav.clickNav('http')" ng-class="{'active': nav.select == 'http'}"><a ui-sref="index.http">http&promise</a></li>
+                <li role="presentation" ng-click="nav.clickNav('directive')" ng-class="{'active': nav.select == 'directive'}"><a ui-sref="index.directive">指令</a></li>
+                <li role="presentation" ng-click="nav.clickNav('upload')" ng-class="{'active': nav.select == 'upload'}"><a ui-sref="index.upload">自定义上传</a></li>
+                <li role="presentation" ng-click="nav.clickNav('dynamic')" ng-class="{'active': nav.select == 'dynamic'}"><a ui-sref="index.dynamicController">动态生成</a></li>
+        </ul>
+        <br>
+        <div class="col-sm-12 col-md-12 col-lg-12" ui-view="detail"></div>
+        <br>
+</div>

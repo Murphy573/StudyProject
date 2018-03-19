@@ -1,0 +1,163 @@
+<div class="mypage">
+    <!--引导栏-->
+    <div ng-cloak  ng-show="isLogin" class="left-side" ng-class="{'left-side-switch': !sliderSwitch}" ng-controller="navCtrl">
+        <div class="head">
+            <div class="logo pull-left" ng-if="sliderSwitch">
+                <img src="img/logo.png"/>
+            </div>
+            <div class="switch pull-left" ng-class="{'switch-switch': !sliderSwitch}">
+                <img src="img/icon_left_side.png" ng-click="clickSlider()"/>
+            </div>
+        </div>
+        <div class="content-box sidebar">
+            <ul class="nav">
+                <li>
+                    <ul has-permission="VISUAL_MANAGER" ng-click="switchNav($event, 'VISUAL_MANAGER')" class="navDetail">
+                        <li><a ui-sref="visualResources.list" ng-class="{'switch': !sliderSwitch, 'nav-select': currentNavSelected =='VISUAL_MANAGER'}"><img style="margin-right:10px" src="img/icon_visualResource.png"/>
+                            <span ng-if="sliderSwitch">可视化资源</span></a></li>
+                    </ul>
+                    <!-- <ul ng-hide="currentUserType == '3'" ng-click="switchNav($event)" class="navDetail">
+                        <li><a ui-sref="mainProtection" href=""><i class="glyphicon glyphicon-hdd"></i>重保配置</a></li>
+                    </ul>
+                    <ul ng-hide="currentUserType == '3'" ng-click="switchNav($event)" class="navDetail">
+                        <li><a ui-sref="rtac" href=""><i class="glyphicon glyphicon-hdd"></i>rtac配置</a></li>
+                    </ul> -->
+                    <ul has-permission="VSUJOB_MANAGER" ng-click="switchNav($event, 'VSUJOB_MANAGER')" class="navDetail">
+                        <li>
+                            <a ui-sref="operationManager.operationList"  ng-class="{'switch': !sliderSwitch, 'nav-select': currentNavSelected =='VSUJOB_MANAGER'}"><img style="margin-right:10px" src="img/icon_vsu.png"/>
+                                <span ng-if="sliderSwitch">作业管理</span></a>
+                        </li>
+                    </ul>
+                    <ul has-permission="USER_MANAGER" ng-click="switchNav($event, 'USER_MANAGER')" class="navDetail">
+                        <li>
+                            <a ui-sref="userManager.list" ng-class="{'switch': !sliderSwitch, 'nav-select': currentNavSelected =='USER_MANAGER'}"><img style="margin-right:10px" src="img/icon_userManager.png"/>
+                                <span ng-if="sliderSwitch">用户管理</span></a>
+                        </li>
+                    </ul>
+                    <ul has-permission="SYSTEM_MANAGER" ng-click="switchNav($event, 'SYSTEM_MANAGER')" class="navDetail sysManager">
+                        <li>
+                            <a ng-class="{'switch': !sliderSwitch,
+                                    'nav-select': (currentNavSelected =='SYSTEM_MANAGER' || currentNavSelected == 'SYSTEM_PROTECT' || currentNavSelected == 'VERSION_INFO' || currentNavSelected == 'PERMISSION_IMPORT_EXPORT')}"> <img style="margin-right:10px" src="img/icon_system.png"/>
+                                <span ng-if="sliderSwitch">系统设置</span></a>
+                        </li>
+                    </ul>
+                    <ul ng-if="sliderSwitch" has-permission="SYSTEM_PROTECT" style="padding-top:3px" ng-click="switchNav($event, 'SYSTEM_PROTECT')" class="navDetail hidden mainNav subSysManager">
+                        <li><a ng-class="{'nav-select': currentNavSelected =='SYSTEM_PROTECT'}" ui-sref="systemMaintenance.export" ui-sref-opts="{reload: true}" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统维护</a></li>
+                    </ul>
+                    <ul ng-if="sliderSwitch" has-permission="VERSION_INFO" style="padding-top:3px" ng-click="switchNav($event, 'VERSION_INFO')" class="navDetail hidden mainNav subSysManager">
+                        <li><a ng-class="{'nav-select': currentNavSelected =='VERSION_INFO'}" ui-sref="versionInformation" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;版本信息</a></li>
+                    </ul>
+                    <ul has-permission="PRIVILEGE_IMPORT_OR_EXPORT" ng-if="sliderSwitch" style="padding-top:3px" ng-click="switchNav($event, 'PERMISSION_IMPORT_EXPORT')" class="navDetail hidden mainNav subSysManager">
+                        <li><a ng-class="{'nav-select': currentNavSelected =='PERMISSION_IMPORT_EXPORT'}" ui-sref="permissionConfig.import" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权限导入导出</a></li>
+                    </ul>
+                    <ul has-permission="OPERATION_LOG" ng-click="switchNav($event, 'OPERATION_LOG')" class="navDetail">
+                        <li>
+                            <a ui-sref="operationLog" ng-class="{'switch': !sliderSwitch, 'nav-select': currentNavSelected =='OPERATION_LOG'}"><img style="margin-right:10px" src="img/icon_userManager.png"/>
+                                <span ng-if="sliderSwitch">操作日志</span></a>
+                        </li>
+                    </ul>
+                    <!-- <ul class="navDetail sysManager">
+                       <li><a><i class="glyphicon glyphicon-cog"></i>系统管理</a></li>
+                   </ul> -->
+                </li>
+            </ul>
+            <!-- 首次登陆提示信息框 -->
+            <div  class="tipbox" ng-show="showTip">
+                <a ui-sref="personalSetting" ng-click="closeTip()" class="tiptext">提示：您的密码为初始密码，点击这里修改密码!</a>
+
+                <span ng-click="closeTip()" class="closeicon"> </span>
+            </div>
+        </div>
+        <div ng-show="!sliderSwitch" id="subSysManagerNav" class = "sub-content-box sidebar hidden">
+            <span id="arrow" class="arrow"></span>
+            <ul style="margin-left: 5px;background-color:#001A29;border-radius: 5px;" class="nav">
+                <li>
+                    <ul ng-click="switchNav($event)" has-permission="SYSTEM_PROTECT" class="navDetail subSysManager">
+                        <li><a class="subNavLab" ui-sref="systemMaintenance.export" ui-sref-opts="{reload: true}">&nbsp;&nbsp;系统维护</a></li>
+                    </ul>
+                    <ul ng-click="switchNav($event)" class="navDetail subSysManager">
+                        <li><a class="subNavLab" has-permission="VERSION_INFO" ui-sref="versionInformation" >&nbsp;&nbsp;版本信息</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div ng-controller="indexCtrl">
+        <div ng-cloak ng-show="isLogin" class="right-side" ng-class="{'switch': !sliderSwitch}" >
+            <div style="height: 100%;float: right;margin-right: 35px;">
+                <ul class="nav navbar-nav" style="margin-top: -13px;">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <span style="color:#333;font-size:12px;font-family:'微软雅黑';">你好，</span><span id="userAccount" style="color:#0093eb;">{{indexUserAccount}}</span> <b class="caret" style="margin-left:8px;"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="personalSetting" >个人设置</a></li>
+                            <li class="divider"></li>
+                            <li><a ng-click="showAutoPlay();" >播放时间设置</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a style="padding-left:5px;" ng-click="logOut()" >
+                            <img style="width:14px;height:16px;margin-right:8px;" alt="" src="img/icon_logout.png">
+                            <span style="color:#333;font-size:12px;font-family:'微软雅黑';">退出</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 播放时间设置框 -->
+        <div class="modal fade" tabindex="-1" id="autoPalySetting" role="dialog">
+            <div class="modal-dialog modal-sm" role="document" style="width:40%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">播放时间设置</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" name="autoPalySettingForm" autocomplete="off">
+                            <div style="margin-top:15px" class="form-group">
+                                <span class="col-sm-2 text-right">播放间隔:  </span>
+                                <div class="col-sm-2">
+                                    <input ng-change = "switchAutoTime(1)" ng-value = 1 ng-checked="playTime == 30" name="playTime" ng-model="playTime" value="30" type="radio"
+                                    /><span>30s</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input ng-change = "switchAutoTime(2)" ng-value = 2 ng-checked="playTime == 60" name="playTime" ng-model="playTime" value="60" type="radio"
+                                    /> <span>60s</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input ng-change = "switchAutoTime(3)" ng-value = 3 ng-checked="playTime == 90" name="playTime" ng-model="playTime" value="90" type="radio"
+                                    /> <span>90s</span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input ng-change = "switchAutoTime(4)" ng-value = 4  name="playTime"  ng-model="playTime"  type="radio"
+                                    />
+                                    <input ng-disabled = "isAutoTime" ng-pattern="/^[1-9][0-9]*$/" type="text" required name = "setPlayTime" style="width:60px;" ng-model="setPlayTime" value={{setPlayTime}} >
+                                    <span>s</span>
+                                </div>
+                            </div>
+                            <div style="margin-top:15px" class="form-group">
+                                <!-- <div class="col-sm-12 error text-center">
+                                    <span ng-show="autoPalySettingForm.setPlayTime.$dirty && autoPalySettingForm.setPlayTime.$invalid">请输入值</span>
+                                </div> -->
+                                <div class="col-sm-12 error text-center">
+                                    <span ng-show="(setPlayTime>86400||setPlayTime<1 || autoPalySettingForm.setPlayTime.$error.pattern || autoPalySettingForm.setPlayTime.$invalid)&&!isAutoTime">不能为空且只能是1-86400间的数字</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button ng-disabled="autoPalySettingForm.$invalid || setPlayTime>86400 || setPlayTime<1" ng-click = "setAutoPaly()" type="button" class="callback btn btn-sm btn-primary">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-class="{'view-box-login': isLogin , 'view-box-login-switch': isLogin  && !sliderSwitch,'view-box-not-login': !isLogin}">
+        <div ui-view="indexView" style="position:relative;height:100%"></div>
+    </div>
+</div>
