@@ -90,5 +90,11 @@ function CatCopy(name){
     }
     Cat.prototype.name = name || 'Tom';
 }
-
-//git当前分值'dev'上提交：冲突master
+/**
+ * <<<<<<< HEAD
+ //git当前分值'dev'上提交：冲突master
+ =======
+ //git当前分值'dev'上提交:dev冲突
+ >>>>>>> dev
+ */
+//手动解决上面的冲突
