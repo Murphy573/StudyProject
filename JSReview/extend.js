@@ -84,8 +84,8 @@ CatMix.prototype.constructor = Cat;
 
 //拷贝继承：for in
 function CatCopy(name){
-    var animal = new Animal();
-    for(var p in animal){
+    let animal = new Animal();
+    for(let p in animal){
         Cat.prototype[p] = animal[p];
     }
     Cat.prototype.name = name || 'Tom';
