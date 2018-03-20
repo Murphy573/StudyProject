@@ -106,3 +106,28 @@
     dd();
 
 }
+
+
+{
+
+    class A{
+        constructor() {
+            console.log(new.target.name);
+            debugger;
+            this.a = 2;
+        }
+    }
+
+    class B extends A {
+        constructor() {
+            super();
+            this.b = 3;
+        }
+
+        add() {
+
+        }
+    }
+
+    new B();
+}
