@@ -1,0 +1,73 @@
+
+html, body, .container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/**
+    文字(行内元素)：利用line-height和text-align实现垂直水平居中
+ */
+/*.inline-vh-center {
+    width: 500px;
+    height: 30px;
+    background-color: #0e90d2;
+    line-height: 30px;
+    text-align: center;
+}*/
+/**
+    文字(行内元素|块级元素)：利用dispaly:table-cell实现垂直水平居中
+ */
+/*.inline-vh-center {
+    width: 500px;
+    height: 30px;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #0e90d2;
+    text-align: center;
+}*/
+
+/**
+    块级元素（已知宽高）:使用左右margin: auto实现水平居中，垂直居中可以使用上下margin或者上下padding
+ */
+.block-vh-center {
+    width: 500px;
+    height: 50px;
+    background-color: #25d24c;
+    overflow: hidden;
+}
+
+.block-vh-center> div {
+    width: 200px;
+    height: 30px;
+    background-color: #144fd2;
+    margin: 10px auto;
+}
+
+/**
+多个元素，使用display: flex;实现垂直水平居中
+ */
+.flex-block-vh-center {
+    width: 600px;
+    height: 50px;
+    background-color: #d22949;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/**
+    grid:
+ */
+.grid-block-vh-center {
+    width: 600px;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    background-color: #d2c429;
+}
+.grid-block-vh-center > * {
+    align-self: center;
+    justify-self: center;
+}
