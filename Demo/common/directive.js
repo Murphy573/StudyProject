@@ -58,6 +58,34 @@ define(["app"], function(app){
         };
     });
 
+    app.directive('customValid', function (){
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function(scope, elm, attrs, ngModelCtrl) {
+                ngModelCtrl.$parsers.push(function(value) {
+                    debugger;
+                    value = + value;
+                    if(value % 2 === 0){
+                        ngModelCtrl.$setValidity('even', true);
+                    }
+                    else {
+                        ngModelCtrl.$setValidity('even', false);
+                    }
+                    return value;
+                });
+                ngModelCtrl.$formatters.push(function(value) {
+                    debugger;
+
+                    value = +value;
+                    ngModelCtrl.$setViewValue(value);
+                    ngModelCtrl.$render();
+                    return value;
+                });
+            }
+        };
+    });
+
     app.directive("testController", ["$compile", function($compile){
         return {
             restrict: 'A',

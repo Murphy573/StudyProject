@@ -7,7 +7,7 @@
 define(["app"], function(app){
     app.register.controller("dataBindCtrl",['$scope', function($scope){
         $scope.nav.select = "dataBind";
-        $scope.tmp = {
+        this.tmp = {
             name: "tmpName",
             id: "12345"
         }

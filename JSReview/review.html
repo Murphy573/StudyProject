@@ -7,6 +7,21 @@
     <!--<script src="extend.js"></script>-->
 </head>
 <body>
+    <img alt="这张图片加载不出来" title="aaa" src="#">
+
+    <section>
+        box-sizing： content-box || border-box；//css3 box-sizing设置为border-box将使用怪异盒子模型
+        当怪异盒子的宽度小于border+padding的宽度的时候，content width将变为0，盒子的宽度会被border和padding的总宽度撑开
+        <div style="
+        box-sizing: border-box;
+        width: 50px;
+        height: 50px;
+        border: 26px solid black;
+        background-color: #ff6600;
+        ">
+        </div>
+    </section>
+
 
 </body>
 </html>

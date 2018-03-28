@@ -113,7 +113,6 @@
     class A{
         constructor() {
             console.log(new.target.name);
-            debugger;
             this.a = 2;
         }
     }
