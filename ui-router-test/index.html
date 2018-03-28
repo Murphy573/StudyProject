@@ -14,13 +14,12 @@
     <script src="../javascripts/angular/angular-ui-router.min.js"></script>
     <script src="../javascripts/bootstrap/bootstrap.js"></script>
     <script src="app/myApp.js"></script>
-    <script src="controllers/managerCtrl.js"></script>
-    <script src="controllers/listCtrl.js"></script>
-    <script src="controllers/detail.js"></script>
+    <script src="controllers/indexCtrl.js"></script>
 </head>
 <body>
-    <div class="row"><a class="btn btn-primary" ui-sref="manager.list">载入管理画面</a></div>
-
-    <div ui-view="indexView" style="padding-top: 100px;" class="row"></div>
+    <a ui-sref="index">show index</a>
+    <a ui-sref="index.content1({sort: 1, param: 2})">content111111</a>
+    <a ui-sref="index.content2">content222222</a>
+    <div ui-view="index"></div>
 </body>
 </html>
