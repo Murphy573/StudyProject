@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <title>css积累</title>
     <link rel="stylesheet" href="css.css">
+
+    <style>
+        .sector {
+            width: 0;
+            height: 0;
+            border-width: 50px;
+            border-style: solid;
+            border-color: #f00 transparent transparent;
+            border-radius: 50px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -22,6 +33,27 @@
             <div>flex块级元素垂直水平居中</div>
             <span>flex块级元素垂直水平居中</span>
         </div>
+
+        <div class="sector"></div>
+
+        <div class="bfc">
+            <div></div>
+            <div></div>
+        </div>
+        <!--未触发BFC，元素浮动，脱离文档流，容器只剩下2px高度-->
+        <div style="border: 1px solid #000;">
+            <div style="width: 100px;height: 100px;background: #142eee;float: left;"></div>
+        </div>
+        <!--添加overflow:hidden;触发容器BFC，包裹浮动元素-->
+        <div style="border: 1px solid #000;overflow: hidden">
+            <div style="width: 100px;height: 100px;background: #eee;float: left;"></div>
+        </div>
+
+
+
+        <div style="height: 100px;width: 100px;float: left;background: lightblue">我是一个左浮动的元素</div>
+        <div style="width: 200px; height: 200px;background: #ee9091">我是一个没有设置浮动,
+            也没有触发 BFC 元素, width: 200px; height:200px; background: #eee;</div>
     </div>
 </body>
 </html>
