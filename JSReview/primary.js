@@ -110,7 +110,7 @@
 
 {
 
-    class A{
+    class A {
         constructor() {
             console.log(new.target.name);
             this.a = 2;
@@ -129,4 +129,140 @@
     }
 
     new B();
+}
+
+
+//挑选出数组中重复的元素
+{
+    let arr = [1, 6, 8, 3, 7, 9, 2, 7, 2, 4, 4, 3, 3, 1, 5, 3];
+
+    function filterMuti() {
+        let _result = [], _cur = [];
+        arr.forEach((v, i) => {
+            if (_cur.indexOf(v) === -1) {
+                _cur.push(v)
+            }
+            else {
+                _result.indexOf(v) === -1 ? _result.push(v) : null;
+            }
+        });
+
+        return _result
+    }
+
+    console.log(filterMuti().sort((a, b) => a - b));
+}
+
+{
+    //作用域链：
+    var a = 10;
+
+    function fn() {
+        var b = 20;
+
+        function bar() {
+            console.log(a + b);
+        }
+
+        return bar;
+    }
+
+    var x = fn(), b = 200;
+    x();
+}
+{
+    let twoSum = function (nums, target) {
+        if (!Array.isArray(nums)) return;
+        let _result = [];
+        nums.forEach((v, i) => {
+            for (let _i = i + 1, len = nums.length; _i < len; _i++) {
+                if (v + nums[_i] === target) {
+                    _result = _result.concat(v, nums[_i]);
+                    break;
+                }
+            }
+        });
+        return _result;
+    };
+
+    console.log(twoSum([3, 2, 4], 6))
+}
+
+{
+    function quickSort(arr) {
+        if (arr.length < 1) {
+            return arr;
+        }
+
+        let _midLen = Math.floor(arr.length / 2);
+        let _midNum = arr.splice(_midLen, 1);
+        let _left = [], _right = [];
+
+        for (let i = 0, len = arr.length; i < len; i++) {
+            if (arr[i] < _midNum) {
+                _left.push(arr[i]);
+            }
+            else {
+                _right.push(arr[i]);
+            }
+        }
+
+        return quickSort(_left).concat(_midNum, quickSort(_right));
+    }
+
+    let _d = new Date().getTime();
+    console.log(quickSort([3, 1, 4, 2, 5, 21, 6, 15, 63,66,77,88,99,23,44]));
+    console.log('quicksort所用时间', new Date().valueOf() - _d);
+
+
+    function realQuickSort(arr) {
+        //交换
+        function swap(arr, a, b) {
+            let temp = arr[a];
+            arr[a] = arr[b];
+            arr[b] = temp;
+        }
+
+        function partition(arr, leftIndex, rightIndex) {
+            /**
+             * 开始时不知最终pivot的存放位置，可以先将pivot交换到后面去
+             * 这里直接定义最右边的元素为基准
+             */
+            let pivot = arr[rightIndex];
+            /**
+             * 存放小于pivot的元素时，是紧挨着上一元素的，否则空隙里存放的可能是大于pivot的元素，
+             * 故声明一个storeIndex变量，并初始化为left来依次紧挨着存放小于pivot的元素。
+             */
+            let storeIndex = leftIndex;
+            for (let i = leftIndex; i < rightIndex; i++) {
+                if (arr[i] < pivot) {
+                    /**
+                     * 遍历数组，找到小于的pivot的元素，（大于pivot的元素会跳过）
+                     * 将循环i次时得到的元素，通过swap交换放到storeIndex处，
+                     * 并对storeIndex递增1，表示下一个可能要交换的位置
+                     */
+                    swap(arr, storeIndex, i);
+                    storeIndex++;
+                }
+            }
+            // 最后： 将pivot交换到storeIndex处，基准元素放置到最终正确位置上
+            swap(arr, rightIndex, storeIndex);
+            return storeIndex;
+        }
+
+        function sort(arr, leftIndex, rightIndex) {
+            if(leftIndex > rightIndex) return;
+            let storeIndex = partition(arr, leftIndex, rightIndex)
+            sort(arr, leftIndex, storeIndex -1);
+            sort(arr, storeIndex + 1, rightIndex);
+        }
+
+        sort(arr, 0, arr.length - 1);
+        return arr;
+    }
+    let _dd = new Date().getTime();
+    console.log(realQuickSort([3, 1, 4, 2, 5, 21, 6, 15, 63,66,77,88,99,23,44]));
+    console.log('realQuickSort所用时间', new Date().valueOf() - _dd);
+
+
 }
