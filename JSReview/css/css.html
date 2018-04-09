@@ -17,6 +17,7 @@
     </style>
 </head>
 <body>
+<span id="top" name="top"></span>
     <div class="container">
         <div title="display: table-cell;" class="inline-vh-center">
             <span>行内元素</span>
@@ -69,6 +70,14 @@
         </article>
         <small contenteditable>©李鹏飞</small>
         <mark>高亮元素</mark>
+        <a href="#top">回到顶部</a>
+
+        <div style="position: relative;">
+            <header>检测position:relative</header>
+            <div style="width:100px;height: 100px; background-color: #ff6600;position: relative;left: 50px;top: 15px;"></div>
+            <div style="width:100px;height: 100px; background-color: #9a161a;position: relative;left: 25px;top: -15px;"></div>
+        </div>
     </div>
+
 </body>
 </html>
