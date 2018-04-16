@@ -290,3 +290,15 @@
     }
     bar(fn);
 }
+
+{
+    setTimeout(() => {
+        //函数去抖
+        let _div = document.querySelector('.mousemove');
+
+        _div.addEventListener('mousemove', Common._throttle((e) => {
+            console.log(e.clientX);
+        }, 500))
+    });
+
+}
